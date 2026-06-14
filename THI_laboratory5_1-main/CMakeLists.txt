@@ -5,7 +5,6 @@ project(programm5_lab4 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# --- 1. ПОДКЛЮЧЕНИЕ GOOGLE TEST (Строго наверх!) ---
 include(FetchContent)
 FetchContent_Declare(
   googletest
@@ -14,17 +13,14 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-# --- 2. НАСТРОЙКА QT ---
 find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets)
 qt_standard_project_setup()
 
-# Подключаем папки с твоими исходниками
 include_directories("C:/THI/laboratory4/programm_lab4")
 include_directories("C:/THI/music_lib3")
 link_directories("C:/THI/laboratory4/programm_lab4/build")
 link_directories("C:/THI/music_lib3/music_lib3/build/music_lib3.dll")
 
-# --- 3. ОСНОВНОЕ ГРАФИЧЕСКОЕ ПРИЛОЖЕНИЕ (Окна) ---
 qt_add_executable(programm5_lab4
     WIN32 MACOSX_BUNDLE
     main.cpp
@@ -40,23 +36,18 @@ qt_add_executable(programm5_lab4
 )
 target_link_libraries(programm5_lab4 PRIVATE Qt::Core Qt::Widgets)
 
-# --- 4. ТЕСТИРОВАНИЕ (Как в лабораторной 7) ---
 include(CTest)
 enable_testing()
 
-# Создаем исполняемый файл для тестов музыкальной библиотеки
 add_executable(run_unit_tests
     tests/test_musiclib.cpp
     C:/THI/music_lib3/music_lib3.cpp
 )
 
-# Линкуем GTest и его заголовочные файлы к нашему тестовому приложению
 target_link_libraries(run_unit_tests PRIVATE GTest::gtest GTest::gtest_main)
 
-# Регистрируем тест в системе CTest
 add_test(NAME MusicLibraryGoogleTests COMMAND run_unit_tests)
 
-# --- 5. ДЕПЛОЙ ---
 include(GNUInstallDirs)
 install(TARGETS programm5_lab4
     BUNDLE  DESTINATION .

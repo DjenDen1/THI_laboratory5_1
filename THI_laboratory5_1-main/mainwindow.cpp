@@ -14,7 +14,6 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    // Очищаем кучу от треков при закрытии программы
     for (auto track : myTracks) {
         delete track;
     }
@@ -23,7 +22,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::refreshInterface()
 {
-    ui->trackListWidget->clear(); // Стираем всё старое с экрана
+    ui->trackListWidget->clear();
     int totalDuration = 0;
 
     for (auto track : myTracks) {
@@ -35,15 +34,11 @@ void MainWindow::refreshInterface()
         totalDuration += track->getDuration();
     }
 
-    // Выводим результат в лейбл на форме
     ui->totalDurationLabel->setText("Общее время диска: " + QString::number(totalDuration) + " сек.");
 }
 
-// Нажатие на кнопку ДОБАВИТЬ ВТОРОЕ ОКНО
 void MainWindow::on_addButton_clicked()
 {
-    // Создаем экземпляр sec_window. Поскольку у него внутри стоит setWindowModality,
-    // оно заблокирует MainWindow.
     sec_window *secWin = new sec_window(this);
 
 
@@ -55,11 +50,10 @@ void MainWindow::on_addButton_clicked()
         }
     });
 
-    secWin->setAttribute(Qt::WA_DeleteOnClose); // Окно само удалится из памяти при закрытии
-    secWin->show(); // Показываем QMainWindow
+    secWin->setAttribute(Qt::WA_DeleteOnClose);
+    secWin->show();
 }
 
-// Нажатие на кнопку УДАЛИТЬ ТРЕК
 void MainWindow::on_deleteButton_clicked()
 {
     int selectedRow = ui->trackListWidget->currentRow();

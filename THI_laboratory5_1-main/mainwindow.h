@@ -18,8 +18,8 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_addButton_clicked();    // Слот для кнопки ДОБАВИТЬ
-    void on_deleteButton_clicked(); // Слот для кнопки УДАЛИТЬ
+    void on_addButton_clicked();
+    void on_deleteButton_clicked();
 
     void on_addTrackButton_clicked();
 
@@ -28,10 +28,9 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
-    // Обычный вектор, хранящий полиморфные указатели на треки ЛР3
     std::vector<MUSIC_COMPOSITION*> myTracks;
 
-    void refreshInterface(); // Метод для перерисовки списка на экране
+    void refreshInterface();
 };
 
 #endif // MAINWINDOW_H

@@ -16,17 +16,16 @@ public:
     explicit sec_window(QWidget *parent = nullptr);
     ~sec_window();
 
-    // Простой геттер, чтобы MainWindow мог забрать созданный трек
     MUSIC_COMPOSITION* getCreatedTrack() { return targetTrack; }
 
 private slots:
     void on_genreBox_currentTextChanged(const QString &genre);
-    void on_btnConfirm_clicked();     // Твоя кнопка CONFIRM
-    void on_canConfirm_2_clicked();   // Твоя кнопка CANCEL
+    void on_btnConfirm_clicked();
+    void on_canConfirm_2_clicked();
 
     void on_ggggggg_clicked();
 
 private:
     Ui::sec_window *ui;
-    MUSIC_COMPOSITION* targetTrack = nullptr; // Сюда сохраним результат работы фабрики
+    MUSIC_COMPOSITION* targetTrack = nullptr;
 };
