@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.19)
 project(programm5_lab4 LANGUAGES CXX)
 
-# Устанавливаем стандарты компилятора, как в лабораторной 7
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
